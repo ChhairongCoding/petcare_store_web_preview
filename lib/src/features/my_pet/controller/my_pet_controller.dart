@@ -265,8 +265,9 @@ class MyPetController extends GetxController {
       return explicit;
     }
 
-    final fallbackUrl =
-        Env.petBucketUrl.trim().isNotEmpty ? Env.petBucketUrl.trim() : Env.bucketUrl.trim();
+    final fallbackUrl = Env.petBucketUrl.trim().isNotEmpty
+        ? Env.petBucketUrl.trim()
+        : Env.bucketUrl.trim();
     if (fallbackUrl.isEmpty) {
       return 'product_image';
     }
