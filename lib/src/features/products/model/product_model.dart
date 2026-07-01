@@ -1,4 +1,4 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:petcare_store/src/helper/env.dart';
 
 class ProductModel {
   final String id;
@@ -18,7 +18,7 @@ class ProductModel {
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
-    final bucketUrl = dotenv.env['bucketUrl'] ?? '';
+    const bucketUrl = Env.bucketUrl;
     final rawPath = json['image_path'] ?? '';
 
     return ProductModel(

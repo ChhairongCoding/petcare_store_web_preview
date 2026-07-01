@@ -2,7 +2,7 @@ import 'dart:developer' as developer;
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:petcare_store/src/helper/env.dart';
 import 'package:get/get.dart';
 import 'package:petcare_store/src/features/my_pet/models/pet_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -260,14 +260,14 @@ class MyPetController extends GetxController {
   }
 
   String _resolveBucketName() {
-    final explicit = dotenv.env['petBucketName']?.trim();
-    if (explicit != null && explicit.isNotEmpty) {
+    final explicit = Env.petBucketName.trim();
+    if (explicit.isNotEmpty) {
       return explicit;
     }
 
     final fallbackUrl =
-        dotenv.env['petBucketUrl']?.trim() ?? dotenv.env['bucketUrl']?.trim();
-    if (fallbackUrl == null || fallbackUrl.isEmpty) {
+        Env.petBucketUrl.trim().isNotEmpty ? Env.petBucketUrl.trim() : Env.bucketUrl.trim();
+    if (fallbackUrl.isEmpty) {
       return 'product_image';
     }
 
